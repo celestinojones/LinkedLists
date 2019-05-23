@@ -14,18 +14,13 @@ function ListNode(name){
     this.next = null;
 }
 
-function SList(){
-    this.head = null;
+function ListNode(name, pointer){
+    this.name = name;
+    this.next = pointer;
 }
 
-function PrintList(list){
-    var runner = list.head;
-    console.log("List of names:");
-    while(runner != null)
-    {
-        console.log(runner.name);
-        runner = runner.next;
-    }
+function SList(){
+    this.head = null;
 }
 
 function AddFront(list, name){
@@ -65,11 +60,65 @@ var sam = new ListNode("Sam");
 myList.head = sam;
 sam.next = tad;
 
-PrintList(myList);
+
 AddFront(myList, "Rudy");
-PrintList(myList);
 RemoveFront(myList);
-PrintList(myList);
 
 var frontOfLine = Front(myList);
 console.log("Front of line: " + frontOfLine);
+
+/*Linked Lists Algorithms - Set 2
+List: Contains
+Sam thinks Tad might be somewhere in a very long line waiting to attend the Superman movie. Given a ListNode pointer and a val, return whether val is found in any node in the list.
+
+SList: Length
+July 20, 2013: about 5000 people wait in line for a chance to audition for American Idol. Create a function that accepts a pointer to the first list node, and returns number of nodes in that SList.
+
+SList: Display
+Create display(node) for debugging that returns a string containing all list values. Build what you wish console.log(myList) did!*/
+
+function Contains(list, pointer, val){
+    var runner = list.head;
+    while(runner != null)
+    {
+        if(runner == pointer && runner.name == val)
+            return true;
+        runner = runner.next;
+    }
+    return false;
+}
+
+var greg = new ListNode("Greg", tad);
+var ashe = new ListNode("Ashe", greg);
+var rochelle = new ListNode("Rochelle", ashe);
+
+var mike = new ListNode("Mike");
+
+console.log("Tad is in line myList: " + Contains(myList, tad, "Tad"));
+console.log("Mike is in line myList: " + Contains(myList, mike, "Mike"));
+
+function Length(listHead){
+    var runner = listHead;
+    var count = 0;
+
+    while(runner != null)
+    {
+        count++;
+        runner = runner.next;
+    }
+
+    return count;
+}
+
+function Display(node){
+    var runner = node;
+    console.log("List of names:");
+    while(runner != null)
+    {
+        console.log(runner.name);
+        runner = runner.next;
+    }
+}
+
+console.log("Length of myList: " + Length(myList.head));
+Display(myList.head);
