@@ -23,6 +23,16 @@ function SList(){
     this.head = null;
 }
 
+function PrintList(list){
+    var runner = list.head;
+    console.log("List of names:");
+    while(runner != null)
+    {
+        console.log(runner.name);
+        runner = runner.next;
+    }
+}
+
 function AddFront(list, name){
     var rudy = new ListNode(name);
     var prevHead = list.head;
@@ -61,19 +71,11 @@ myList.head = sam;
 sam.next = tad;
 
 
+PrintList(myList);
 AddFront(myList, "Rudy");
+PrintList(myList);
 RemoveFront(myList);
+PrintList(myList);
 
 var frontOfLine = Front(myList);
 console.log("Front of line: " + frontOfLine);
-
-
-/*Linked Lists Algorithms - Set 2
-List: Contains
-Sam thinks Tad might be somewhere in a very long line waiting to attend the Superman movie. Given a ListNode pointer and a val, return whether val is found in any node in the list.
-
-SList: Length
-July 20, 2013: about 5000 people wait in line for a chance to audition for American Idol. Create a function that accepts a pointer to the first list node, and returns number of nodes in that SList.
-
-SList: Display
-Create display(node) for debugging that returns a string containing all list values. Build what you wish console.log(myList) did!*/
