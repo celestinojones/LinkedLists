@@ -68,11 +68,9 @@ var sam = new ListNode("Sam");
 myList.head = sam;
 sam.next = tad;
 
-AddFront(myList, "Rudy");
 RemoveFront(myList);
 
 var frontOfLine = Front(myList);
-console.log("Front of line: " + frontOfLine);
 
 
 /*Linked Lists Algorithms - Set 2
@@ -129,9 +127,61 @@ AddLast(myList, rochelle);
 
 Display(myList.head);
 
-var mike = new ListNode("Mike");
 
-console.log("Tad is in line myList: " + Contains(myList, tad, "Tad"));
-console.log("Mike is in line myList: " + Contains(myList, mike, "Mike"));
+/*Linked Lists Algorithms - Set 3
+SList: Back
+Create a function that accepts a ListNode pointer and returns the last value in the list.
 
-console.log("Length of myList: " + Length(myList.head));
+SList: Remove Back
+Create a standalone function that removes the last ListNode in the list and returns the new list.
+
+SList: Add Back
+Create a function that creates a ListNode with given value and inserts it at end of a linked list.*/
+
+function Back(node){
+    var runner = node;
+    while(runner != null)
+    {
+        runner = runner.next;
+        if(runner == null)
+            break;
+    }
+
+    return runner.name;
+}
+
+function RemoveBack(list){
+    var runner = list.head;
+    while(runner != null)
+    {
+        runner = runner.next;
+        if(runner.next.next == null)
+        {
+            runner.next = null;
+            break;
+        }
+    }
+}
+
+function AddBack(list, name){
+    var newNode = new ListNode(name);
+    var runner = list.head;
+    while(runner != null)
+    {
+        runner = runner.next;
+        if(runner.next == null)
+        {
+            runner.next = newNode;
+            break;
+        }
+    }
+
+    return list;
+}
+
+Display(myList.head);
+RemoveBack(myList);
+Display(myList.head);
+
+AddBack(myList, "Douglas");
+Display(myList.head);
